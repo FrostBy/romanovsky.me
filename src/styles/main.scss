@@ -1,0 +1,507 @@
+// =============================================
+// Apple Liquid Glass Design System
+// =============================================
+
+// CSS Variables
+:root {
+  // Background Gradient Colors (Light) - Subtle blue-gray monochrome
+  --gradient-1: #e8eef5;
+  --gradient-2: #d4dce8;
+  --gradient-3: #c9d6e8;
+  --gradient-4: #dde5f0;
+
+  // Glass Properties
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-shadow: rgba(100, 120, 150, 0.15);
+  --glass-blur: 16px;
+
+  // Text Colors (dark text on light bg)
+  --text-primary: rgba(0, 0, 0, 0.85);
+  --text-secondary: rgba(0, 0, 0, 0.55);
+  --text-muted: rgba(0, 0, 0, 0.4);
+
+  // Accent
+  --accent: #0066CC;
+  --accent-hover: #0077ED;
+
+  // Spacing
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 64px;
+
+  // Typography
+  --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
+
+  // Animation
+  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 0.2s;
+  --duration-normal: 0.3s;
+  --duration-slow: 0.5s;
+}
+
+// Dark Theme - Deep blue-purple monochrome
+:root[data-theme="dark"] {
+  --gradient-1: #0d1117;
+  --gradient-2: #161b22;
+  --gradient-3: #1a1f2e;
+  --gradient-4: #12161d;
+
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-shadow: rgba(0, 0, 0, 0.4);
+
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-muted: rgba(255, 255, 255, 0.4);
+
+  --accent: #58a6ff;
+  --accent-hover: #79b8ff;
+}
+
+// =============================================
+// Reset & Base
+// =============================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-system);
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+// =============================================
+// Background Gradient
+// =============================================
+
+.bg-gradient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    135deg,
+    var(--gradient-1) 0%,
+    var(--gradient-2) 25%,
+    var(--gradient-3) 50%,
+    var(--gradient-4) 75%,
+    var(--gradient-1) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+// =============================================
+// Layout
+// =============================================
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  min-height: 100vh;
+}
+
+// =============================================
+// Glass Card
+// =============================================
+
+.glass-card {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 8px 32px var(--glass-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  padding: var(--space-lg);
+  transition: transform var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 12px 40px var(--glass-shadow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+}
+
+// =============================================
+// Hero Section
+// =============================================
+
+.hero {
+  text-align: center;
+
+  &__avatar {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto var(--space-md);
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+      0 0 0 4px rgba(255, 255, 255, 0.1),
+      0 8px 32px rgba(0, 0, 0, 0.2);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    margin-bottom: var(--space-md);
+  }
+
+  // Large Title: 34pt, Regular, ~1.2 line-height
+  &__name {
+    font-size: clamp(1.75rem, 5vw, 2.125rem); // 28-34pt
+    font-weight: 400; // Regular per Apple HIG
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: var(--space-xs);
+    color: var(--text-primary);
+  }
+
+  // Title 2: 22pt, Regular
+  &__title {
+    font-size: clamp(1.125rem, 3vw, 1.375rem); // 18-22pt
+    font-weight: 400;
+    line-height: 1.27;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+
+  // Subheadline: 15pt, Regular
+  &__tagline {
+    font-size: 0.9375rem; // 15pt
+    line-height: 1.33;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  &__socials {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+}
+
+:root[data-theme="dark"] .hero__socials {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+// =============================================
+// Social Links
+// =============================================
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all var(--duration-normal) var(--ease-out);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    color: var(--accent);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+}
+
+:root[data-theme="dark"] .social-link {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  &:hover {
+    color: var(--accent);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+// =============================================
+// Resume Section
+// =============================================
+
+.resume {
+  text-align: center;
+
+  // Title 1: 28pt for CTA
+  &__title {
+    font-size: 1.75rem; // 28pt
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: var(--space-md);
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  &__preview {
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+
+    iframe {
+      width: 100%;
+      height: 500px;
+      display: block;
+      border: none;
+    }
+  }
+}
+
+// =============================================
+// Glass Button
+// =============================================
+
+.glass-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: 44px; // HIG minimum for touch targets
+  padding: 12px 28px;
+  background: var(--accent);
+  border: none;
+  border-radius: 9999px;
+  color: #fff;
+  font-weight: 600; // Semibold for buttons
+  font-size: 1.0625rem; // 17pt - Body (standard for buttons)
+  line-height: 1.29;
+  text-decoration: none;
+  transition: all var(--duration-fast) var(--ease-out);
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    background: var(--accent-hover);
+    transform: scale(1.02);
+  }
+}
+
+// =============================================
+// Footer
+// =============================================
+
+// Footnote: 13pt
+.footer {
+  text-align: center;
+  padding: var(--space-sm) 0;
+  color: var(--text-muted);
+  font-size: 0.8125rem; // 13pt
+  line-height: 1.38;
+}
+
+// =============================================
+// Theme Switch
+// =============================================
+
+.theme-switch {
+  position: fixed;
+  top: var(--space-md);
+  right: var(--space-md);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--accent);
+    transform: scale(1.05);
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+
+    &--light {
+      display: block;
+    }
+
+    &--dark {
+      display: none;
+    }
+  }
+}
+
+:root[data-theme="dark"] .theme-switch {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .theme-switch__icon--light {
+    display: none;
+  }
+
+  .theme-switch__icon--dark {
+    display: block;
+  }
+}
+
+// =============================================
+// Responsive
+// =============================================
+
+@media (max-width: 640px) {
+  .container {
+    padding: var(--space-lg) var(--space-sm);
+    gap: var(--space-md);
+  }
+
+  .glass-card {
+    padding: var(--space-md);
+    border-radius: 20px;
+  }
+
+  .hero__avatar {
+    width: 120px;
+    height: 120px;
+  }
+
+  .resume__preview iframe {
+    height: 400px;
+  }
+
+  .resume__buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .theme-switch {
+    top: var(--space-sm);
+    right: var(--space-sm);
+    width: 40px;
+    height: 40px;
+  }
+}
+
+// =============================================
+// Entrance Animations
+// =============================================
+
+.animate-hidden {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.animate-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+
+// =============================================
+// Accessibility
+// =============================================
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .bg-gradient {
+    animation: none;
+  }
+}

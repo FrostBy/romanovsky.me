@@ -1,0 +1,23 @@
+# Environment
+**/.env
+**/.env.*
+!**/.env.example
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+CLAUDE.md
+ARCHITECTURE.md
+.clinerules-*
+
+**/node_modules
+**/dist
+**/build
+**/coverage
+**/.claude
+**/telegram-bot-api-data
+
+# Docker local override
+docker-compose.override.yml
