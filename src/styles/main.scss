@@ -253,6 +253,20 @@ body {
   line-height: 1;
 }
 
+.social-link__img {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+
+  &--invert {
+    filter: invert(1);
+  }
+}
+
+:root[data-theme="dark"] .social-link__img--invert {
+  filter: none;
+}
+
 :root[data-lang="ru"] .hero__title {
   font-size: clamp(1.125rem, 3vw, 1.328rem);
 }
