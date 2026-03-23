@@ -246,29 +246,15 @@ body {
   display: flex;
 }
 
-.social-link__text {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  line-height: 1;
+.social-link__icon--habr {
+  width: 26px;
+  height: 26px;
+  transform: translate(2px, 2px);
 }
 
-.social-link__img {
+.social-link__icon--fl {
   width: 20px;
-  height: 20px;
-
-  &--lg {
-    width: 26px;
-    height: 26px;
-  }
-
-  &--invert {
-    filter: invert(1);
-  }
-}
-
-:root[data-theme="dark"] .social-link__img--invert {
-  filter: none;
+  height: 16px;
 }
 
 :root[data-lang="ru"] .hero__title {
@@ -301,7 +287,7 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
   transition: all var(--duration-normal) var(--ease-out);
 
-  svg {
+  svg:not([class]) {
     width: 20px;
     height: 20px;
   }
