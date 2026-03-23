@@ -256,7 +256,11 @@ body {
 .social-link__img {
   width: 20px;
   height: 20px;
-  border-radius: 4px;
+
+  &--lg {
+    width: 26px;
+    height: 26px;
+  }
 
   &--invert {
     filter: invert(1);
