@@ -238,14 +238,6 @@ body {
   }
 }
 
-.social-link--ru-only {
-  display: none;
-}
-
-:root[data-lang="ru"] .social-link--ru-only {
-  display: flex;
-}
-
 .social-link__icon--habr {
   width: 26px;
   height: 26px;
@@ -299,6 +291,14 @@ body {
       0 4px 16px rgba(0, 0, 0, 0.12),
       inset 0 1px 0 rgba(255, 255, 255, 0.6);
   }
+}
+
+.social-link--ru-only {
+  display: none;
+}
+
+:root[data-lang="ru"] .social-link--ru-only {
+  display: flex;
 }
 
 :root[data-theme="dark"] .social-link {
