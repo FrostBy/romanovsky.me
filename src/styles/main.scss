@@ -238,6 +238,21 @@ body {
   }
 }
 
+.social-link--ru-only {
+  display: none;
+}
+
+:root[data-lang="ru"] .social-link--ru-only {
+  display: flex;
+}
+
+.social-link__text {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
 :root[data-lang="ru"] .hero__title {
   font-size: clamp(1.125rem, 3vw, 1.328rem);
 }

@@ -51,6 +51,8 @@ const i18n = rosetta({
     github: 'GitHub',
     linkedin: 'LinkedIn',
     telegram: 'Telegram',
+    habr: 'Habr Career',
+    flru: 'FL.ru',
   },
   ru: {
     heroName: 'Владислав Романовский',
@@ -73,6 +75,8 @@ const i18n = rosetta({
     github: 'GitHub',
     linkedin: 'LinkedIn',
     telegram: 'Telegram',
+    habr: 'Хабр Карьера',
+    flru: 'FL.ru',
   }
 })
 
