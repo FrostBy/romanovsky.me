@@ -375,14 +375,21 @@ body {
 }
 
 // =============================================
-// Theme Switch
+// Controls Container (Language + Theme)
 // =============================================
 
-.theme-switch {
+.controls {
   position: fixed;
   top: var(--space-md);
   right: var(--space-md);
   z-index: 100;
+  display: flex;
+  gap: var(--space-xs);
+}
+
+// Shared style for control buttons
+.lang-switch,
+.theme-switch {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -403,7 +410,20 @@ body {
     color: var(--accent);
     transform: scale(1.05);
   }
+}
 
+// Language Switch
+.lang-switch {
+  &__label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+}
+
+// Theme Switch
+.theme-switch {
   &__icon {
     width: 20px;
     height: 20px;
@@ -418,6 +438,7 @@ body {
   }
 }
 
+:root[data-theme="dark"] .lang-switch,
 :root[data-theme="dark"] .theme-switch {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.15);
@@ -426,7 +447,9 @@ body {
   &:hover {
     background: rgba(255, 255, 255, 0.2);
   }
+}
 
+:root[data-theme="dark"] .theme-switch {
   .theme-switch__icon--light {
     display: none;
   }
@@ -465,9 +488,13 @@ body {
     align-items: center;
   }
 
-  .theme-switch {
+  .controls {
     top: var(--space-sm);
     right: var(--space-sm);
+  }
+
+  .lang-switch,
+  .theme-switch {
     width: 40px;
     height: 40px;
   }
